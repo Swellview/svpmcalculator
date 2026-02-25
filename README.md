@@ -1,2 +1,122 @@
-# svpmcalculator
-Swell View Property Management Calculator
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Swell View Property Management Calculator</title>
+
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 420px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  }
+
+  .logo {
+    width: 120px;
+    display: block;
+    margin: 0 auto 10px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 16px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #0077ff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .results {
+    margin-top: 20px;
+    background: #f9fafc;
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .results p {
+    margin: 6px 0;
+    font-size: 15px;
+  }
+
+  .total {
+    font-size: 18px;
+    font-weight: bold;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <img src="logo.png" alt="Swell View Property Management" class="logo">
+
+  <h2>Swell View Property Management</h2>
+
+  <label>Accommodation Fare ($)</label>
+  <input type="number" id="fare" placeholder="Enter amount">
+
+  <label>Cleaning Fee ($)</label>
+  <input type="number" id="cleaning" placeholder="Enter amount">
+
+  <button onclick="calculate()">Calculate</button>
+
+  <div class="results">
+    <p>Subtotal: $<span id="subtotal">0.00</span></p>
+    <p>Tax (13.5%): $<span id="tax">0.00</span></p>
+    <p class="total">Total: $<span id="total">0.00</span></p>
+  </div>
+
+</div>
+
+<script>
+function calculate() {
+  let fare = parseFloat(document.getElementById("fare").value) || 0;
+  let cleaning = parseFloat(document.getElementById("cleaning").value) || 0;
+
+  let guestyShield = 65;
+  let subtotal = fare + cleaning + guestyShield;
+  let tax = subtotal * 0.135;
+  let total = subtotal + tax;
+
+  document.getElementById("subtotal").innerText = subtotal.toFixed(2);
+  document.getElementById("tax").innerText = tax.toFixed(2);
+  document.getElementById("total").innerText = total.toFixed(2);
+}
+</script>
+
+</body>
+</html>
