@@ -103,9 +103,11 @@
 
   <div class="results">
     <p>Guesty Shield: $65.00</p>
-    <p>Subtotal: $<span id="subtotal">0.00</span></p>
-    <p>Tax (13.5%): $<span id="tax">0.00</span></p>
-    <p class="total">Total: $<span id="total">0.00</span></p>
+    <p>Subtotal (before tax): $<span id="subtotal">0.00</span></p>
+    <p>Discretionary Sales Surtax (1.5%): $<span id="dsst">0.00</span></p>
+    <p>State Transient Rental Tax (6%): $<span id="strt">0.00</span></p>
+    <p>Tourist Development Tax (6%): $<span id="tdt">0.00</span></p>
+    <p class="total">Total Payout: $<span id="total">0.00</span></p>
   </div>
 
 </div>
@@ -117,11 +119,19 @@ function calculate() {
 
   let guestyShield = 65;
   let subtotal = fare + cleaning + guestyShield;
-  let tax = subtotal * 0.135;
-  let total = subtotal + tax;
+
+  // Itemized taxes
+  let dsst = subtotal * 0.015;  // 1.5%
+  let strt = subtotal * 0.06;   // 6%
+  let tdt = subtotal * 0.06;    // 6%
+  let totalTax = dsst + strt + tdt;
+
+  let total = subtotal + totalTax;
 
   document.getElementById("subtotal").innerText = subtotal.toFixed(2);
-  document.getElementById("tax").innerText = tax.toFixed(2);
+  document.getElementById("dsst").innerText = dsst.toFixed(2);
+  document.getElementById("strt").innerText = strt.toFixed(2);
+  document.getElementById("tdt").innerText = tdt.toFixed(2);
   document.getElementById("total").innerText = total.toFixed(2);
 }
 </script>
